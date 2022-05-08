@@ -1,5 +1,4 @@
-/**
- * Quick Sort
+/* Quick Sort
  * Recursivley splits an list at a pivot, dividing it into
  * new lists smaller than and greater than the pivot.
  * After reducing the input array to it's smallest possible
@@ -21,7 +20,7 @@ function quickSort(list, constPivot) {
   if (Array.isArray(list) === false) {
     throw new TypeError()
   }
-
+  
   // base case
   if (list.length < 2) {
     return [...list]
@@ -30,7 +29,7 @@ function quickSort(list, constPivot) {
   // recursive case
   const pivotIdx = constPivot ?? Math.floor(Math.random() * (list.length + 1))
   const pivot = list[pivotIdx] //mid point, floored
-
+  
   let same = list.filter((val, i) => val === pivot && i !== pivotIdx)
   let smaller = list.filter((val) => val < pivot)
   let greater = list.filter((val) => val > pivot)

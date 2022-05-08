@@ -1,4 +1,4 @@
-import unionFind from "../unionFind"
+import unionFind from "./unionFind"
 
 describe("root()", () => {
   const { getRoot } = unionFind(10)

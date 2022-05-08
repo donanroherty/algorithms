@@ -1,4 +1,4 @@
-import selectionSort from "../selectionSort"
+import selectionSort from "./selectionSort"
 
 const mockData = [
   { id: 2, name: "Contact" },
@@ -24,9 +24,7 @@ describe("selectionSort()", () => {
     const result = selectionSort(mockData)
 
     result.forEach((item) => {
-      const search = mockData.find(
-        (mock) => mock.id === item.id && mock.name === item.name
-      )
+      const search = mockData.find((mock) => mock.id === item.id && mock.name === item.name)
 
       expect(search).toBeDefined()
     })

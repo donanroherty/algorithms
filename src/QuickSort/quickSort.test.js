@@ -1,4 +1,4 @@
-import * as qs from "../quickSort"
+import * as qs from "./quickSort"
 const { quickSort } = qs
 
 test("it throws for invalid params", function () {

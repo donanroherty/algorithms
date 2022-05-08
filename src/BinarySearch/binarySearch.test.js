@@ -1,4 +1,4 @@
-import binarySearch from "../binarySearch"
+import binarySearch from "./binarySearch"
 
 const n = 100
 const arr = makeMock(n)

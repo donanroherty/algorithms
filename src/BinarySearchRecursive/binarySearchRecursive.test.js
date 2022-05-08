@@ -1,4 +1,4 @@
-import * as bsr from "../binarySearchRecursive"
+import * as bsr from "./binarySearchRecursive"
 const { binarySearchRecursive } = bsr
 
 const mockData = [
@@ -15,7 +15,7 @@ afterEach(function () {
   jest.clearAllMocks()
 })
 
-test("it throws params are missing or incorrect", function () {
+test("it throws if params are missing or incorrect", function () {
   expect(function sansParams() {
     binarySearchRecursive()
   }).toThrow(TypeError)
