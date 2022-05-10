@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      style="border: 1px solid black"
+      width="400"
+      height="200"
+    />
+    <title>PointQuadTree</title>
+  </head>
+  <body>
+    <canvas id="cvs" width="400" height="400" style="border: 1px solid black"></canvas>
+  </body>
+
+  <script type="module" src="./pointQuadTree.js"></script>
+  <script type="module">
+    import { pointQuadTree } from "./pointQuadTree.js"
+
+    const canvas = document.getElementById("cvs")
+    canvas.style.transform = "scaleY(-1)" // flip y axis to make bottom left 0,0
+
+    const ctx = canvas.getContext("2d")
+    const { clientWidth, clientHeight, clientLeft, clientTop } = canvas
+
+    const p0 = { x: 100, y: 100 }
+    const p1 = { x: 100, y: 300 }
+    const p2 = { x: 300, y: 300 } // exceed capacity of root cell
+    const p3 = { x: 55, y: 30 }
+    const p4 = { x: 85, y: 28 } // exceed capacity of the bl
+    const p5 = { x: 90, y: 34 }
+    const p6 = { x: 95, y: 30 } // exceed capacity of bl->bl->tr cell
+    const pts = [p0, p1, p2, p3, p4, p5, p6]
+
+    const qt = pointQuadTree({ x: 0, y: 0, w: clientWidth, h: clientHeight }, 1, pts)
+
+    renderQuadTree(qt)
+    pts.forEach(renderPoint)
+
+    function renderPoint(pt) {
+      ctx.beginPath()
+      ctx.arc(pt.x, pt.y, 2, 0, 2 * Math.PI, true)
+      ctx.strokeStyle = "red"
+      ctx.stroke()
+    }
+
+    // render cells recursivley
+    function renderQuadTree(cell) {
+      ctx.beginPath()
+      ctx.rect(cell.bounds.x, cell.bounds.y, cell.bounds.w, cell.bounds.h)
+      ctx.strokeStyle = "blue"
+
+      ctx.stroke()
+
+      const subdivs = cell.subdivisions
+      if (subdivs) {
+        const { bottomLeft, topLeft, topRight, bottomRight } = subdivs
+
+        renderQuadTree(bottomLeft)
+        renderQuadTree(topLeft)
+        renderQuadTree(topRight)
+        renderQuadTree(bottomRight)
+      }
+    }
+  </script>
+</html>
