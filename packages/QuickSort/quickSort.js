@@ -9,18 +9,18 @@
  * was already sorted, runtime with a pivot of 0 would be O(n squared).
  */
 
-import * as qs from "./quickSort"
+import * as qs from "./quickSort.js"
 
 /**
  * Sorts an array of numbers in ascending order
- * @param {number[]} list // A list of numbers to sort
- * @param {number|undefined} constPivot Optional: A constant index to use as the pivot, primarily useful for testing recursions. If ommitted a random pivot will be chosen.
+ * @param {number[]} [list] // A list of numbers to sort
+ * @param {number|undefined} [constPivot] Optional: A constant index to use as the pivot, primarily useful for testing recursions. If ommitted a random pivot will be chosen.
  */
 function quickSort(list, constPivot) {
   if (Array.isArray(list) === false) {
     throw new TypeError()
   }
-  
+
   // base case
   if (list.length < 2) {
     return [...list]
@@ -29,7 +29,7 @@ function quickSort(list, constPivot) {
   // recursive case
   const pivotIdx = constPivot ?? Math.floor(Math.random() * (list.length + 1))
   const pivot = list[pivotIdx] //mid point, floored
-  
+
   let same = list.filter((val, i) => val === pivot && i !== pivotIdx)
   let smaller = list.filter((val) => val < pivot)
   let greater = list.filter((val) => val > pivot)

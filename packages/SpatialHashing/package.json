@@ -1,0 +1,13 @@
+{
+  "name": "spatial-hash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "module": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "types": "./types.d.ts",
+  "author": "",
+  "license": "ISC"
+}

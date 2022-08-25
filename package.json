@@ -2,10 +2,13 @@
   "name": "algorithms",
   "version": "1.0.0",
   "description": "A collection of algorithms I've been learning",
-  "main": "index.js",
   "author": "Ronan Doherty",
   "license": "MIT",
   "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "test": "jest --watchAll"
   },

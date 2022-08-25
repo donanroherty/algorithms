@@ -1,4 +1,4 @@
-import * as qs from "./quickSort"
+import * as qs from "./quickSort.js"
 const { quickSort } = qs
 
 test("it throws for invalid params", function () {
@@ -7,10 +7,12 @@ test("it throws for invalid params", function () {
   }).toThrowError()
 
   expect(function () {
+    // @ts-ignore
     quickSort(5)
   }).toThrowError()
 
   expect(function () {
+    // @ts-ignore
     quickSort("abc")
   }).toThrowError()
 
